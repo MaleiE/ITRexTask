@@ -20,6 +20,7 @@ public class ModificationTextImpl {
         sb.setLength(0);
         sb.append(text);
         return sb;
+
     }
 
     public StringBuilder deleteDuplicatesChar(StringBuilder sb){
@@ -34,7 +35,8 @@ public class ModificationTextImpl {
     }
 
     public StringBuilder deleteLastChar(StringBuilder sb) {
-        String text = sb.toString().replaceAll("[eE](?!\\w)","");
+
+        String text = sb.toString().replaceAll("(?<=\\w)[eE](?!\\w)","");
         sb.setLength(0);
         sb.append(text);
         return sb;
