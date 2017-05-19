@@ -1,6 +1,5 @@
 package com.malei.itrex.tasks.logic;
 
-import com.malei.itrex.tasks.exception.ApplicationException;
 import com.malei.itrex.tasks.logic.io.ReadWriteFile;
 import com.malei.itrex.tasks.logic.io.impl.ReadWriteFileImpl;
 import com.malei.itrex.tasks.logic.tasktwo.PrinceOfPersiaMaze;

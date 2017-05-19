@@ -13,7 +13,7 @@ public class PrinceOfPersiaMazeImpl implements PrinceOfPersiaMaze {
 
     private Queue<Point> pointQueue = new LinkedList<>();
     private String[][][] maze = null;
-    private int count;
+    private int countStep;
     private int lvl = 0;
     private int i = 0;
     private int k = 0;
@@ -120,9 +120,9 @@ public class PrinceOfPersiaMazeImpl implements PrinceOfPersiaMaze {
 
         while (p.getParent() != null) {
             p = p.getParent();
-            count++;
+            countStep++;
             System.out.println(p.toString());
         }
-        return String.valueOf((count*TIME));
+        return String.valueOf((countStep*TIME));
     }
 }
