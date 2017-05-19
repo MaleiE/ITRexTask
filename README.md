@@ -1,5 +1,6 @@
 Task 1 
 Text modification is made due to required condition. Regular expressions were used. 
+
 Task 2. 
 Search for the shortest way in labyrinth.BSF method was used here. 
 
