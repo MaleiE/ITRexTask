@@ -37,9 +37,9 @@ public class PrinceOfPersiaMazeImpl implements PrinceOfPersiaMaze {
                 for (int x = 0; x < maze[lvl][y].length; x++) {
                     maze[lvl][y][x] = String.valueOf(s.charAt(x));
                     if (String.valueOf(s.charAt(x)).equals("1")) {
-                        startX = 0;
-                        startY = 0;
-                        startZ = 0;
+                        startX = lvl;
+                        startY = y;
+                        startZ = x;
                     }
                 }
                 y++;
