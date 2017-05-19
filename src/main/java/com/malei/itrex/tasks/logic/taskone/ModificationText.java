@@ -1,4 +1,4 @@
-package com.malei.itrex.tasks.logic;
+package com.malei.itrex.tasks.logic.taskone;
 
 public interface ModificationText {
 

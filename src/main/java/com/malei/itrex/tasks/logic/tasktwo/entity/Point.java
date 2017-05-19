@@ -1,6 +1,4 @@
-package com.malei.itrex.tasks.logic.pop;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
+package com.malei.itrex.tasks.logic.tasktwo.entity;
 
 public class Point {
     private int x;
@@ -13,39 +11,25 @@ public class Point {
         this.y = y;
         this.z = z;
         this.parent = parent;
-
     }
 
     public int getX() {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
 
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
 
     public int getZ() {
         return z;
     }
 
-    public void setZ(int z) {
-        this.z = z;
-    }
 
     public Point getParent() {
         return parent;
-    }
-
-    public void setParent(Point parent) {
-        this.parent = parent;
     }
 
     @Override
