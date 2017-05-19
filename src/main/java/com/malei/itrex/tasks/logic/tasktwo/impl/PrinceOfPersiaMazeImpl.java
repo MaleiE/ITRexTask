@@ -36,10 +36,10 @@ public class PrinceOfPersiaMazeImpl implements PrinceOfPersiaMaze {
                 String s = (String) list.get(u);
                 for (int x = 0; x < maze[lvl][y].length; x++) {
                     maze[lvl][y][x] = String.valueOf(s.charAt(x));
-                    if(String.valueOf(s.charAt(x)).equals("1")){
-                        startX = lvl;
-                        startY = y;
-                        startZ = x;
+                    if (String.valueOf(s.charAt(x)).equals("1")) {
+                        startX = 0;
+                        startY = 0;
+                        startZ = 0;
                     }
                 }
                 y++;
@@ -50,6 +50,7 @@ public class PrinceOfPersiaMazeImpl implements PrinceOfPersiaMaze {
                 lvl++;
             }
         }
+
         return maze;
     }
 
@@ -58,6 +59,7 @@ public class PrinceOfPersiaMazeImpl implements PrinceOfPersiaMaze {
         pointQueue.add(new Point(x, y, z, null));
 
         while (!pointQueue.isEmpty()) {
+
             Point activeP = pointQueue.remove();
 
             if (maze[activeP.getX()][activeP.getY()][activeP.getZ()].equals("2")) {
@@ -65,64 +67,61 @@ public class PrinceOfPersiaMazeImpl implements PrinceOfPersiaMaze {
             }
 
             if (freePoint(activeP.getX() + 1, activeP.getY(), activeP.getZ())) {
-                maze[activeP.getX()][activeP.getY()][activeP.getZ()] = "-1";
+                maze[activeP.getX()][activeP.getY()][activeP.getZ()] = "*";
                 Point nextP = new Point(activeP.getX() + 1, activeP.getY(), activeP.getZ(), activeP);
                 pointQueue.add(nextP);
             }
 
             if (freePoint(activeP.getX() - 1, activeP.getY(), activeP.getZ())) {
-                maze[activeP.getX()][activeP.getY()][activeP.getZ()] = "-1";
+                maze[activeP.getX()][activeP.getY()][activeP.getZ()] = "*";
                 Point nextP = new Point(activeP.getX() - 1, activeP.getY(), activeP.getZ(), activeP);
                 pointQueue.add(nextP);
             }
 
             if (freePoint(activeP.getX(), activeP.getY() + 1, activeP.getZ())) {
-                maze[activeP.getX()][activeP.getY()][activeP.getZ()] = "-1";
+                maze[activeP.getX()][activeP.getY()][activeP.getZ()] = "*";
                 Point nextP = new Point(activeP.getX(), activeP.getY() + 1, activeP.getZ(), activeP);
                 pointQueue.add(nextP);
             }
 
             if (freePoint(activeP.getX(), activeP.getY() - 1, activeP.getZ())) {
-                maze[activeP.getX()][activeP.getY()][activeP.getZ()] = "-1";
+                maze[activeP.getX()][activeP.getY()][activeP.getZ()] = "*";
                 Point nextP = new Point(activeP.getX(), activeP.getY() - 1, activeP.getZ(), activeP);
                 pointQueue.add(nextP);
             }
 
             if (freePoint(activeP.getX(), activeP.getY(), activeP.getZ() + 1)) {
-                maze[activeP.getX()][activeP.getY()][activeP.getZ()] = "-1";
+                maze[activeP.getX()][activeP.getY()][activeP.getZ()] = "*";
                 Point nextP = new Point(activeP.getX(), activeP.getY(), activeP.getZ() + 1, activeP);
                 pointQueue.add(nextP);
             }
 
             if (freePoint(activeP.getX(), activeP.getY(), activeP.getZ() - 1)) {
-                maze[activeP.getX()][activeP.getY()][activeP.getZ()] = "-1";
+                maze[activeP.getX()][activeP.getY()][activeP.getZ()] = "*";
                 Point nextP = new Point(activeP.getX(), activeP.getY(), activeP.getZ() - 1, activeP);
                 pointQueue.add(nextP);
             }
-
         }
         return null;
     }
 
     private boolean freePoint(int x, int y, int z) {
-        if ((x >= 0 && x < maze.length)
+        return (x >= 0 && x < maze.length)
                 && (y >= 0 && y < maze[1].length)
                 && (z >= 0 && z < maze[2].length)
-                && (maze[x][y][z].equals(".") || maze[x][y][z].equals("2"))) {
-            return true;
-        }
-        return false;
+                && (maze[x][y][z].equals(".") || maze[x][y][z].equals("2"));
     }
 
     @Override
     public String start() {
-        Point p = getPathBFS(startX,startY,startZ);
+        Point p = getPathBFS(startX, startY, startZ);
 
         while (p.getParent() != null) {
+            System.out.println(p);
             p = p.getParent();
             countStep++;
-            System.out.println(p.toString());
         }
-        return String.valueOf((countStep*TIME));
+        System.out.println(String.valueOf((countStep * TIME)));
+        return String.valueOf((countStep * TIME));
     }
 }
