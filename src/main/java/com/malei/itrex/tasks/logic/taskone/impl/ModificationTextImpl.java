@@ -1,6 +1,12 @@
 package com.malei.itrex.tasks.logic.taskone.impl;
 
+import com.malei.itrex.tasks.exception.ApplicationException;
+import com.malei.itrex.tasks.logic.io.ReadWriteFile;
+import com.malei.itrex.tasks.logic.io.impl.ReadWriteFileImpl;
 import com.malei.itrex.tasks.logic.taskone.ModificationText;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class ModificationTextImpl implements ModificationText {
 
@@ -47,4 +53,33 @@ public class ModificationTextImpl implements ModificationText {
         sb.append(text);
         return sb;
     }
+
+    @Override
+    public List modificationText() throws ApplicationException {
+        ReadWriteFile rw = new ReadWriteFileImpl();
+        List<String> text = new LinkedList<>();
+        StringBuilder sb = new StringBuilder();
+        try {
+            for (Object o : rw.readText()) {
+                sb.append(o);
+
+                sb = deleteArticles(sb);
+                sb = deleteChar(sb);
+                sb = deleteDuplicatesChar(sb);
+                sb = deleteLastChar(sb);
+
+                if (!sb.toString().isEmpty()) {
+                    text.add(sb.toString());
+                }
+
+                sb.delete(0, sb.length());
+            }
+        } catch (ApplicationException e) {
+            throw new ApplicationException("Text not modified",e);
+        }
+
+        return text;
+    }
+
+
 }

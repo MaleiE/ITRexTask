@@ -5,19 +5,19 @@ import com.malei.itrex.tasks.logic.taskone.impl.ModificationTextImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ConverterTextImplTest {
+public class ModificationTextTest {
 
     private ModificationText mt = new ModificationTextImpl();
     private StringBuilder sb = new StringBuilder();
 
-    private static final String IN_DELETE_C = "success";
-    private static final String OUT_DELETE_C = "suksess";
     private static final String IN_DELETE_DOUBLE_LETTER = "iee. iee eeii ooooo";
     private static final String OUT_DELETE_DOUBLE_LETTER = "i. i i uo";
-    private static final String IN_DELETE_LAST_LETTER_E = "The. the thee e. e E e ethe";
-    private static final String OUT_DELETE_LAST_LETTER_E = "Th. th the e. e E e eth";
+    private static final String IN_DELETE_C = "success";
+    private static final String OUT_DELETE_C = "suksess";
     private static final String IN_ARTICLES = "an An. the, The a";
     private static final String OUT_ARTICLES = " . ,  ";
+    private static final String IN_DELETE_LAST_LETTER_E = "The. the thee e. e E e ethe";
+    private static final String OUT_DELETE_LAST_LETTER_E = "Th. th the e. e E e eth";
 
     @Test
     public void removeCharTest() throws Exception {

@@ -1,13 +1,19 @@
 package com.malei.itrex.tasks.logic.taskone;
 
+import com.malei.itrex.tasks.exception.ApplicationException;
+
+import java.util.List;
+
 public interface ModificationText {
 
-    public StringBuilder deleteChar(StringBuilder text);
+    StringBuilder deleteChar(StringBuilder text);
 
-    public StringBuilder deleteArticles(StringBuilder sb);
+    StringBuilder deleteArticles(StringBuilder sb);
 
-    public StringBuilder deleteDuplicatesChar(StringBuilder sb);
+    StringBuilder deleteDuplicatesChar(StringBuilder sb);
 
-    public StringBuilder deleteLastChar(StringBuilder sb);
+    StringBuilder deleteLastChar(StringBuilder sb);
+
+    List modificationText()throws ApplicationException;
 
 }
