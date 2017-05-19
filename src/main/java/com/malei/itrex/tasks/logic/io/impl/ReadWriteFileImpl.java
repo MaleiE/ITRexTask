@@ -29,14 +29,14 @@ public class ReadWriteFileImpl implements ReadWriteFile {
                 strings.add(line);
             }
         } catch (IOException e) {
-            throw new ApplicationException("The file is not read", e);
+            throw new ApplicationException("Read err", e);
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                     reader = null;
                 } catch (IOException e) {
-                    throw new ApplicationException("Reader is not closed", e);
+                    throw new ApplicationException("Reader not closed", e);
                 }
             }
         }
@@ -51,13 +51,13 @@ public class ReadWriteFileImpl implements ReadWriteFile {
             writer.append(text);
 
         } catch (IOException e) {
-            throw new ApplicationException("The text is not written", e);
+            throw new ApplicationException("Err Writer", e);
         } finally {
             if (writer != null) {
                 try {
                     writer.close();
                 } catch (IOException e) {
-                    throw new ApplicationException("Writer is not closed", e);
+                    throw new ApplicationException("Writer not closed", e);
                 }
             }
         }
