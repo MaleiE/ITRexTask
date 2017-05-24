@@ -6,12 +6,14 @@ public class Point {
     private int z;
     private Point parent;
 
+
     public Point(int x, int y, int z, Point parent) {
         this.x = x;
         this.y = y;
         this.z = z;
         this.parent = parent;
     }
+
 
     public int getX() {
         return x;

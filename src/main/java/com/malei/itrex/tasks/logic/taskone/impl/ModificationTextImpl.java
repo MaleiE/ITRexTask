@@ -12,15 +12,11 @@ public class ModificationTextImpl implements ModificationText {
 
     @Override
     public StringBuilder deleteChar(StringBuilder text){
-        final String ci = "ci";
-        final String ce = "ce";
         final String si = "si";
         final String se = "se";
-        final String ck = "ck";
         final String ckTok = "k";
-        final String c = "c";
         final String k = "k";
-        String s = text.toString().replace(ci, si).replace(ce, se).replace(ck, ckTok).replace(c, k);
+        String s = text.toString().replaceAll("([Cc][Ii])",si).replaceAll("([Cc][Ee])", se).replaceAll("([Cc][Kk])", ckTok).replaceAll("([Cc])", k);
         text.setLength(0);
         return text.append(s);
     }
@@ -40,7 +36,7 @@ public class ModificationTextImpl implements ModificationText {
         final String ee = "ee";
         final String u = "u";
         final String i = "i";
-        String text = sb.toString().replace(oo, u).replace(ee, i).replaceAll("(.)\\1{1,}", "$1");
+        String text = sb.toString().replace(oo, u).replace(ee, i).replaceAll("([A-Za-z])\\1{1,}", "$1");
         sb.setLength(0);
         sb.append(text);
         return sb;

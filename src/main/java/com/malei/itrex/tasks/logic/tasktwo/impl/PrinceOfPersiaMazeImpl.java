@@ -15,9 +15,9 @@ public class PrinceOfPersiaMazeImpl implements PrinceOfPersiaMaze {
     private String[][][] maze = null;
     private int countStep;
     private int lvl = 0;
-    private int i = 0;
-    private int k = 0;
-    private int j = 0;
+    private int mazeHeight = 0;
+    private int mazeDepth = 0;
+    private int mazeWidth = 0;
     private int y = 0;
     private int startX = 0;
     private int startY = 0;
@@ -27,10 +27,10 @@ public class PrinceOfPersiaMazeImpl implements PrinceOfPersiaMaze {
     public String[][][] buildMaze(List list) {
         for (int u = 0; u < list.size(); u++) {
             if (u == 0) {
-                i = Integer.parseInt(String.valueOf(list.get(u).toString().charAt(0)));
-                k = Integer.parseInt(String.valueOf(list.get(u).toString().charAt(2)));
-                j = Integer.parseInt(String.valueOf(list.get(u).toString().charAt(4)));
-                maze = new String[i][k][j];
+                mazeHeight = Integer.parseInt(String.valueOf(list.get(u).toString().charAt(0)));
+                mazeDepth = Integer.parseInt(String.valueOf(list.get(u).toString().charAt(2)));
+                mazeWidth = Integer.parseInt(String.valueOf(list.get(u).toString().charAt(4)));
+                maze = new String[mazeHeight][mazeDepth][mazeWidth];
             }
             if (u != 0 && (!list.get(u).equals(""))) {
                 String s = (String) list.get(u);
@@ -106,22 +106,24 @@ public class PrinceOfPersiaMazeImpl implements PrinceOfPersiaMaze {
     }
 
     private boolean freePoint(int x, int y, int z) {
-        return (x >= 0 && x < maze.length)
-                && (y >= 0 && y < maze[1].length)
-                && (z >= 0 && z < maze[2].length)
-                && (maze[x][y][z].equals(".") || maze[x][y][z].equals("2"));
+        return (x >= 0 && x < mazeHeight)
+                && (y >= 0 && y < mazeDepth)
+                && (z >= 0 && z < mazeWidth)
+                && ((maze[x][y][z].equals(".")) || (maze[x][y][z].equals("2")));
     }
 
     @Override
     public String start() {
         Point p = getPathBFS(startX, startY, startZ);
-
-        while (p.getParent() != null) {
-            System.out.println(p);
-            p = p.getParent();
-            countStep++;
+        if (p != null) {
+            while (p.getParent() != null) {
+                System.out.println(p);
+                p = p.getParent();
+                countStep++;
+            }
         }
         System.out.println(String.valueOf((countStep * TIME)));
         return String.valueOf((countStep * TIME));
     }
+
 }
